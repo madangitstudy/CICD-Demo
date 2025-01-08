@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SERVER = 'sonarqube'  // SonarQube server name configured in Jenkins
-        SONARQUBE_URL = 'http://3.6.93.45:9000'  // Replace with your actual SonarQube server URL
+        SONARQUBE_SERVER = 'sonarqube' // SonarQube server name configured in Jenkins
+        SONARQUBE_URL = 'http://3.6.93.45:9000' // Replace with your actual SonarQube server URL
         DOCKER_IMAGE = 'my-java-app:latest'
         KUBERNETES_NAMESPACE = 'java-app'
     }
@@ -24,7 +24,8 @@ pipeline {
 
                 // Verify that the JAR file is present before proceeding
                 script {
-                    if (!fileExists('target/my-java-app-1.0-SNAPSHOT.jar')) {
+                    def jarFile = 'target/java-cicd-app-1.0-SNAPSHOT.jar'
+                    if (!fileExists(jarFile)) {
                         error 'JAR file not found in target directory!'
                     }
                 }
