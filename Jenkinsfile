@@ -18,6 +18,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+                // Debugging: List files in target folder to ensure the JAR file is created
+                sh 'ls -R target/'
             }
         }
 
