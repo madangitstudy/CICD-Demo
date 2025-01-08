@@ -18,8 +18,16 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+                
                 // Debugging: List files in target folder to ensure the JAR file is created
                 sh 'ls -R target/'
+
+                // Verify that the JAR file is present before proceeding
+                script {
+                    if (!fileExists('target/java-cicd-app-1.0-SNAPSHOT.jar')) {
+                        error 'JAR file not found in target directory!'
+                    }
+                }
             }
         }
 
@@ -33,10 +41,14 @@ pipeline {
 
         stage('Docker Build and Push') {
             steps {
-                sh '''
-                docker build -t madanbokare/$DOCKER_IMAGE .
-                docker push madanbokare/$DOCKER_IMAGE
-                '''
+                script {
+                    // Docker login to Docker Hub
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker') {
+                        // Build and push the Docker image
+                        sh 'docker build -t madanbokare/$DOCKER_IMAGE .'
+                        sh 'docker push madanbokare/$DOCKER_IMAGE'
+                    }
+                }
             }
         }
 
