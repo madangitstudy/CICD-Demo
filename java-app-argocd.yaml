@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/<username>/<repo>'
+    repoURL: 'https://github.com/madangitstudy/CICD-Demo.git'
     targetRevision: HEAD
     path: helm-chart
   destination:
