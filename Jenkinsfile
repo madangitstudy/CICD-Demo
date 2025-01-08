@@ -24,7 +24,7 @@ pipeline {
 
                 // Verify that the JAR file is present before proceeding
                 script {
-                    if (!fileExists('target/java-cicd-app-1.0-SNAPSHOT.jar')) {
+                    if (!fileExists('target/my-java-app.jar')) {
                         error 'JAR file not found in target directory!'
                     }
                 }
