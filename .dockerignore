@@ -1,0 +1,10 @@
+# Ignore the target directory (which contains your compiled JAR)
+target/
+
+# Ignore .git and other source control files
+.git/
+
+# Other files you don't need in the Docker image
+*.log
+*.iml
+*.idea/
