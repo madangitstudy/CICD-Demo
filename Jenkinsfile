@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SONARQUBE_SERVER = 'sonarqube' // SonarQube server name configured in Jenkins
-        SONARQUBE_URL = 'http://13.232.138.168:9000' // Replace with your actual SonarQube server URL
+        SONARQUBE_URL = 'http://3.6.93.45:9000' // Replace with your actual SonarQube server URL
         DOCKER_IMAGE = 'my-java-app:latest'
         KUBERNETES_NAMESPACE = 'java-app'
     }
