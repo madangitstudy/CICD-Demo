@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SERVER = 'SonarQube' // SonarQube server name configured in Jenkins
+        SONARQUBE_SERVER = 'sonarqube' // SonarQube server name configured in Jenkins
         DOCKER_IMAGE = 'my-java-app:latest'
         KUBERNETES_NAMESPACE = 'java-app'
     }
@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/<username>/<repo>.git'
+                git branch: 'main', url: 'https://github.com/madangitstudy/CICD-Demo.git'
             }
         }
 
@@ -31,8 +31,8 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 sh '''
-                docker build -t <dockerhub-username>/$DOCKER_IMAGE .
-                docker push <dockerhub-username>/$DOCKER_IMAGE
+                docker build -t madanbokare/$DOCKER_IMAGE .
+                docker push madanbokare/$DOCKER_IMAGE
                 '''
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 sh '''
                 helm upgrade --install my-java-app ./helm-chart \
                     --namespace $KUBERNETES_NAMESPACE \
-                    --set image.repository=<dockerhub-username>/$DOCKER_IMAGE
+                    --set image.repository=madanbokare/$DOCKER_IMAGE
                 '''
             }
         }
