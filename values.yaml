@@ -15,4 +15,3 @@ ingress:
     - host: my-java-app.example.com
       paths:
         - path: /
-
